@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-Emprendimientos</title>
+  <link rel="stylesheet" href="styleRegistro.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- JQuery -->
+  <script src="libs/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+  <div id="registro-container">
+    <!-- Div de panel de registro -->
+    <div id="panel-registro">
+      <!-- Titulo y contenido de panel de registro -->
+      <h2 class="titulo-panel-registro-colaborador">Panel de Registro de Colaborador</h2>
+      <!-- Formulario de registro -->
+      <form id="formulario-colaborador">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br>
+        <span class="error" id="error-nombre"></span>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono"><br>
+        <span class="error" id="error-telefono"></span>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email"><br>
+        <span class="error" id="error-email"></span>
+
+        <label for="horario">Horario de atención: Desde / Hasta</label>
+        <input type="time" id="horario-desde" name="horario-desde"><br>
+        <input type="time" id="horario-hasta" name="horario-hasta"><br>
+        <span class="error" id="error-horario"></span>
+
+        <label for="direccion">Dirección sin normalizar</label><br>
+        <input type="text" id="direccionSinNormalizar" placeholder="Buscar dirección" name="buscarDireccion"><br>
+        <button type="button" id="normalizar" onclick="normalizarDireccion()">Normalizar</button><br>
+        <span class="error" id="error-direccion"></span>
+
+        <label for="direccionNormalizada">Dirección normalizada</label><br>
+        <select id="direccionNormalizada" name="direccionNormalizada">
+          <option value="">Seleccione una dirección</option>
+        </select><br>
+        <span class="error" id="error-direccionNormalizada"></span>
+
+        <label for="comercio">¿Posee comercio físico?</label>
+        <select id="comercio" name="comercio">
+          <option value="">Seleccione una opción</option>
+          <option value="si">Sí</option>
+          <option value="no">No</option>
+        </select><br>
+        <span class="error" id="error-comercio"></span>
+
+        <!-- Campos adicionales en caso de tener comercio físico -->
+        <div id="campos-comercio" style="display: none;">
+          <label for="nombre-comercio">Nombre del Comercio:</label>
+          <input type="text" id="nombre-comercio" name="nombre-comercio"><br>
+          <span class="error" id="error-nombre-comercio"></span>
+
+          <label for="direccion-comercio">Dirección del Comercio:</label>
+          <input type="text" id="direccion-taller-comercio" placeholder="Ingrese una dirección">
+          <button id="boton-buscar-comercio" onclick="buscarDireccionComercio()">Buscar Comercio</button><br>
+          <select id="direccionComercioNormalizado" name="direccionComercioNormalizado">
+            <option value="">Seleccione una dirección</option>
+          </select><br>
+          <span class="error" id="error-direccionComercioNormalizada"></span>
+          <button type="button" id="mostrar-direccion" onclick="mostrarDireccionEnMapa()">Mostrar dirección de Comercio</button><br>
+        </div>
+
+        <!-- Selector de Emprendimiento Virtual -->
+        <label for="emprendimiento">¿Tiene un emprendimiento virtual?</label>
+        <select id="emprendimiento" name="emprendimiento">
+          <option value="">Seleccione una opción</option>
+          <option value="si">Sí</option>
+          <option value="no">No</option>
+        </select><br>
+        <span class="error" id="error-emprendimiento"></span>
+
+        <!-- Campos adicionales en caso de tener emprendimiento virtual -->
+        <div id="campos-emprendimiento" style="display: none;">
+          <label for="nombre-emprendimiento">Nombre del Emprendimiento Virtual:</label>
+          <input type="text" id="nombre-emprendimiento" name="nombre-emprendimiento"><br>
+          <span class="error" id="error-nombre-emprendimiento"></span>
+
+          <label for="descripcion">Descripción:</label>
+          <input type="text" id="descripcion" name="descripcion"></input><br>
+          <span class="error" id="error-descripcion"></span>
+        </div>
+
+        <!-- Otros campos de datos del colaborador -->
+        <input type="submit" value="Registrar">
+      </form>
+      <div id="registro"></div>
+    </div>
+  </div>
+
+  <div id="busqueda-container">
+    <!-- Div de panel de búsqueda -->
+    <div id="panel-busqueda">
+      <!-- Botón de Búsqueda -->
+      <div class="barra-de-busqueda">
+        <div class="home">
+          <a href="inicio.html">Volver a Inicio</a>
+        </div>
+        <div class="emprendimientos">
+          <a href="listadoEmprendimientos.html">Buscar Emprendimientos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="map-container">
+    <!-- Div para contener el mapa -->
+    <div id="map">
+    </div>
+  </div>
+
+  <!-- Incluir los archivos JS de Leaflet -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Incluir el servicio de normalización -->
+  <script src="http://servicios.usig.buenosaires.gob.ar/nd-js/1.4/normalizadorDirecciones.min.js" type="text/javascript"></script>
+
+  <!-- Incluir mis scripts.js -->
+  <script src="normalizador.js"></script>
+  <script src="mapa.js"></script>
+  <script src="talleres.js"></script>
+  <script src="buscadorDireccion.js"></script>
+  <script src="registrar.js"></script>
+</body>
+
+</html>
